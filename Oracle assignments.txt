@@ -1,0 +1,554 @@
+1)
+   
+  DESCRIPTION
+Note: In case of ORACLE, make sure "SET HEADING OFF" is present in the query before you submit as your output is compared with the expected output without the column names. However, you are free to comment out that line when you are running your code to see the column names.
+
+Database: college
+
+Retrieve the details (Name, Salary and dept code) of the employees who are working in department 20, 30 and 40 from staff_master.
+
+Solution :
+
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here:
+select Staff_name,Staff_sal,Dept_code from staff_master where Dept_code in (20,30,40);
+
+
+
+2)
+
+
+   DESCRIPTION
+Note: In case of ORACLE, make sure "SET HEADING OFF" is present in the query before you submit as your output is compared with the expected output without the column names. However, you are free to comment out that line when you are running your code to see the column names.
+
+List the details of the employees with following Column headers:
+staff_code -> Employee ID
+staff_name ->  Employee Name
+hiredate -> Hired Date
+staff_dob -> Staff DOB
+staff_sal -> Salary
+staff_address -> Staff Address
+dept_code -> Department Code
+design_code -> Design Code
+
+
+solution:
+
+
+alter session set current_schema=college;
+
+SET heading OFF;
+
+-- Write your query here:
+
+
+select staff_code "Employee ID",staff_name "Employee Name",hiredate "Hired Date",staff_dob "Staff DOB",staff_sal "Salary",staff_address "staff Address", dept_code "Department Code",design_code "Design Code" from staff_master;
+
+
+3)
+
+DESCRIPTION
+Note: In case of ORACLE, make sure "SET HEADING OFF" is present in the query before you submit as your output is compared with the expected output without the column names. However, you are free to comment out that line when you are running your code to see the column names.
+
+Display the code, subjects and total marks for every student from the student_marks table. 
+
+Total Marks will be calculated as Subject1+Subject2+Subject3.
+
+The student_marks table is described below:?
+?
+
+Sample Output:
+	1019	     188
+	1020	     178
+	1021	     206
+
+
+solution:
+
+
+alter session set current_schema=college;
+
+SET heading OFF;
+
+-- Write your query here: 
+
+select Student_Code,(Subject1+Subject2+Subject3) "Total Marks" from student_marks;
+
+
+
+4)
+
+
+DESCRIPTION
+Note: In case of ORACLE, make sure "SET HEADING OFF" is present in the query before you submit as your output is compared with the expected output without the column names. However, you are free to comment out that line when you are running your code to see the column names.
+
+List the details of the staff whose designations are either PROFESSOR or LECTURER.  
+
+The staff_master table is described below:?
+?
+The designation_master table is described below:?
+?
+Solution :
+
+alter session set current_schema = college;
+
+SET heading OFF
+
+-- Write your sql queries here
+
+select * from staff_master,designation_master where 
+staff_master.Design_code=designation_master.design_code and (Design_name='Lecturer' or Design_name = 'Professor');
+
+
+5)
+
+DESCRIPTION
+Note: In case of ORACLE, make sure "SET HEADING OFF" is present in the query before you submit as your output is compared with the expected output without the column names. However, you are free to comment out that line when you are running your code to see the column names.
+
+List the code, name, and department number of the employees, from  the table staff_master,  who have experience of more than 15 years. 
+
+The staff_master table is described below:?
+
+solution:
+
+
+alter session set current_schema = college;
+
+SET heading OFF\
+
+-- Write your sql queries here
+
+select Staff_Name,Staff_code,Dept_code from staff_master 
+
+where round(MONTHS_BETWEEN(SYSDATE,HireDate)/12)>15;
+
+
+6)
+
+
+DESCRIPTION
+Note: In case of ORACLE, make sure "SET HEADING OFF" is present in the query before you submit as your output is compared with the expected output without the column names. However, you are free to comment out that line when you are running your code to see the column names.
+
+Database: college
+
+List the name and Designations of the staff who have joined before Jan 2003. 
+
+The staff_master table is described below:?
+?
+The designation_master table is described below:?
+solution :
+
+
+
+alter session set current_schema=college;
+
+SET heading OFF;
+-- Write your query here
+
+select Staff_Name,Design_name from staff_master s,designation_master d
+ 
+where s.Design_code=d.Design_code and HireDate<'01-JAN 03';
+
+
+8)
+
+DESCRIPTION
+Note: In case of ORACLE, make sure "SET HEADING OFF" is present in the query before you submit as your output is compared with the expected output without the column names. However, you are free to comment out that line when you are running your code to see the column names.
+
+Database: college
+
+List the name and experience (in years) of employees who are working as LECTURER. 
+
+The staff_master table is described below:?
+solution:
+
+alter session set current_schema=college;
+
+SET heading OFF;
+
+-- Write your query here
+
+select Staff_Name, MONTHS_BETWEEN(sysdate,HireDate) as experiance
+from staff_master s,designation_master d
+
+where s.Design_code=d.Design_code and Design_name= 'Lecturer';
+
+
+9)
+
+Note: In case of ORACLE, make sure "SET HEADING OFF" is present in the query before you submit as your output is compared with the expected output without the column names. However, you are free to comment out that line when you are running your code to see the column names.
+
+Database: college
+
+Display name concatenated with dept_code, from the student_master table, separated by comma and space. Name the column as ‘Student Info’.
+
+The student_master table has been described below:?
+?
+Sample Output:
+Amit, 10
+Ravi, 10
+Ajay, 20
+Raj, 30
+Arvind, 40
+
+
+solution:
+
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select (Student_name||', '||Dept_Code) from student_master;
+
+
+10)
+
+DESCRIPTION
+Note: In case of ORACLE, make sure "SET HEADING OFF" is present in the query before you submit as your output is compared with the expected output without the column names. However, you are free to comment out that line when you are running your code to see the column names.
+
+Database: college
+
+ List the Name and Salary of the staff who are earning between 12000 and 25000, from the table staff_master. Sort them based on their salaries and name.
+
+The staff_master table is described below:?
+?
+Sample Output:
+Arvind							17000
+Raviraj 						18000
+Anil							20000
+Shyam							20000
+Rahul							22000
+Mohan							24000
+
+solution:
+
+
+alter session set current_schema=college;
+SET heading OFF;
+select Staff_Name,Staff_sal from staff_master
+where Staff_sal between 12000 and 25000
+order by Staff_sal,Staff_Name;
+
+
+11)
+
+DESCRIPTION
+Note: In case of ORACLE, make sure "SET HEADING OFF" is present in the query before you submit as your output is compared with the expected output without the column names. However, you are free to comment out that line when you are running your code to see the column names.
+
+Database: college
+
+Write a query which will display name, department code and date of birth of all students who were born between January 1, 1990 and March 31, 1993. Sort it based on date of birth (ascending).
+
+The student_master table has been described below:?
+?
+Sample Output:
+Sumit							   20 01-JAN-90
+Amit							   10 11-JAN-90
+Arvind							   40 15-JAN-90
+Rahul							   50 16-JAN-90
+Mehul							   20 17-JAN-90
+
+solution:
+
+
+
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select Student_name,Dept_Code,Student_dob from student_master
+where Student_dob between '01-JAN-90' and '31-MAR-93'
+order by Student_dob;
+
+
+12)
+
+Database: college
+
+Display each staff name and number of months they worked for the organization. Order your result by number of months employed. Round the number of months to closest whole number.
+
+The staff_master table has been described below:?
+?
+
+Solution:
+
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select Staff_Name,round(months_between(sysdate,HireDate)) number_months
+from staff_master;
+
+
+13)
+
+Database: college
+
+Write a query that displays Staff Name, Salary, and Grade of all staff. Grade depends on the following points: 
+If the Salary >=50000, then Grade =  A
+If the Salary >= 25000 and Salary < 50000, then Grade = B
+If the Salary >=10000 and Salary < 25000, then Grade = C
+else Grade = D
+
+The staff_master has been described below:
+ ?
+?
+
+
+Solution:
+
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select Staff_Name,Staff_sal,
+    case
+    when Staff_sal >=50000 then 'A'
+    when Staff_sal >=25000 and Staff_sal <50000 then 'B'
+    when Staff_sal >=10000 and Staff_sal <25000 then 'C'
+    else 'D'
+    end
+    from staff_master;
+
+14)
+
+
+Database: college
+
+Display the Highest, Lowest, Total & Average salary of all staff for each department.
+
+The staff_master table is described below:?
+
+
+Solution:
+
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select round(max(Staff_sal),0) "Highest",
+round(min(Staff_sal),0) "Lowest",
+round(sum(Staff_sal),0) "Total",
+round(avg(Staff_sal),0) "Average"
+from staff_master
+group by Dept_code;
+
+
+
+15)
+
+
+Database: college
+
+Determine the number of managers without listing them.
+
+The staff_master has been described below:
+ ?
+Solution:
+
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select count (distinct (Mgr_code)) "total_number_of_managers" from staff_master; 
+
+
+16)
+
+Database: college
+
+Write a query which displays Staff Name, Department Code, Department Name, and Salary for all staff who earns more than 20000.
+
+The staff_master tablehas been described below:?
+?
+The department_master table has been described below:?
+?
+
+
+Solution:
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select staff_master.Staff_Name,staff_master.Dept_code,department_master.Dept_Name,Staff_sal 
+from staff_master,department_master 
+where staff_master.Dept_code=department_master.Dept_code and Staff_sal >20000;
+
+
+17)
+
+Database: college
+
+Display Staff Code, Staff Name, Department Name, and his manager’s number and name.
+
+The staff_master tablehas been described below:?
+?
+The department_master table has been described below:?
+?
+
+
+Solution :
+
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select Staff_code,Staff_Name,Dept_name,Mgr_code
+from staff_master,department_master
+where staff_master.Dept_code = department_master.Dept_code;
+
+
+
+
+18)
+
+
+
+Database: college
+
+Create a query that will display Student Code, Student Name, Department Name, Subjec1, Subject2, and Subject3 for all students who are getting 60 and above in each subject from department 10 and 20.
+
+The student_master table has been described below:?
+?
+The student_marks table has been described below:?
+?
+
+
+Solution:
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select student_master.Student_code,Student_name,Subject1,Subject2,Subject3
+from student_master,student_marks
+where student_master.Student_code=student_marks.Student_code
+and Subject1 > 60 and Subject2 >60 and Subject3 >60
+and Dept_code in(10,20);
+
+
+
+19)
+
+Database: college
+
+Get the Department number, and sum of Salary of all non managers where the sum  of salary is greater than 20000.
+
+The staff_master table has been described below:?
+
+
+Solution:
+
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select dept_code,sum(staff_sal) from staff_master 
+where staff_code not in (select distinct mgr_code from staff_master)
+group by dept_code having sum(staff_sal)>20000;
+
+
+20)
+
+Database: college
+
+Display Author Name for those authors who wrote more than one book.
+
+The book_master table has been described below:?
+?
+
+Solution:
+
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select distinct Book_pub_author from book_master
+where Book_pub_author in (select Book_pub_author 
+from book_master group by Book_pub_author having count(*)>1);
+
+
+21)
+
+Database: college
+
+Display Staff Code, Staff Name, Department Name, and Designation for those who have joined most recently.
+
+The staff_master has been described below:?
+?
+The department_master table has been described below:?
+?
+The designation_master table has been described below:?
+?
+
+Solution:
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select s.Staff_code,s.Staff_Name,d.Dept_name,m.Design_name
+from staff_master s,department_master d,designation_master m
+where s.Dept_code = d.Dept_code and s.Design_code=m.Design_code
+and HireDate=(select max(HireDate)from staff_master);
+
+22)
+
+
+Database: college
+
+Generate a report which contains the following information.
+Staff Code, Staff Name, Designation, Department, Book Code, Book Name,
+ Author, Fine  For the staff who have not return the book. Fine will be calculated as Rs. 5 per day. 
+Fine = 5 * (No. of days = Current Date – Expected return date).
+
+
+The staff_master has been described below:?
+?
+The department_master table has been described below:?
+?
+The designation_master table has been described below:?
+?
+The book_transactions table has been described below:?
+?
+The book_master table has been described below:?
+?
+
+
+solution:
+
+alter session set current_schema=college;
+
+SET heading OFF;
+
+-- Write your query here
+
+select s.Staff_code,Staff_Name,Design_name,Dept_name,
+t.Book_Code,Book_name,book_pub_author,
+(5*(sysdate-Book_expected_return_date)) "Fine"
+from staff_master s,
+department_master d,designation_master m,
+book_transactions t,book_master b where
+s.dept_code=d.dept_code and s.design_code=m.design_code and
+t.book_code=b.book_code and 
+Book_expected_return_date is null;
+
+
+
+
+23)
+
+Database: college
+
+List the Name and Designation code of the staff who have joined before Jan 2003 and whose salary range is between 12000 and 25000
+
+The staff_master table has been described below:?
+?
+
+Solution:
+
+alter session set current_schema=college;
+SET heading OFF;
+-- Write your query here
+select staff_name,design_code from staff_master
+where HireDate < '01-JAN-03' and staff_sal between 12000 and 25000;

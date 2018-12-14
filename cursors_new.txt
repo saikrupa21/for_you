@@ -1,0 +1,320 @@
+
+
+-----------------------------------------------------------------------------
+                                CURSORS
+-----------------------------------------------------------------------------
+ SET SERVEROUTPUT ON
+----------------------------------------------------------------
+SQL> begin
+  2  update Department_t set dept_name='Production' where dept_id =50;
+  3  DBMS_OUTPUT.PUT_LINE(sql%rowcount);
+  4  if sql%rowcount =0 then
+  5  insert into Department_t values(50,'Production');
+  6  end if;
+  7  end;
+  8  /
+1
+
+PL/SQL procedure successfully completed.
+
+---------------------------------------------------------------------------------
+
+
+
+SQL> DECLARE
+  2             CURSOR cName IS SELECT * FROM dept;
+  3         deptDetail dept%rowtype;
+  4      BEGIN
+  5             OPEN cName; -- Opening a cursor
+  6             FETCH cName INTO deptDetail;
+  7             CLOSE cName; --Closing cursor
+  8             DBMS_OUTPUT.PUT_LINE(deptDetail.dname);
+  9      END;
+ 10  /
+ACCOUNTING
+
+PL/SQL procedure successfully completed.
+-----------------------------------------------------------------------------------
+
+
+SQL> DECLARE
+  2             CURSOR cName IS SELECT * FROM dept;
+  3         deptDetail dept%rowtype;
+  4      BEGIN
+  5             IF cname%ISOPEN
+  6             THEN
+  7                     null;
+  8             ELSE
+  9                     OPEN cname;
+ 10             END IF;
+ 11             FETCH cname INTO deptDetail;
+ 12             LOOP
+ 13             FETCH cname INTO deptDetail;
+ 14             EXIT WHEN cname%NOTFOUND;
+ 15                     DBMS_OUTPUT.PUT_LINE(deptDetail.dname);
+ 16             END LOOP;
+ 17     END;
+ 18     /
+RESEARCH
+SALES
+OPERATIONS
+
+PL/SQL procedure successfully completed.
+--------------------------------------------------------------------------------------------
+
+
+SQL> DECLARE
+  2             CURSOR cName IS SELECT * FROM dept;
+  3        deptDetail dept%rowtype;
+  4     BEGIN
+  5             IF cname%ISOPEN
+  6             THEN
+  7                     null;
+  8             ELSE
+  9                     OPEN cname;
+ 10             END IF;
+ 11             FETCH cname INTO deptDetail;
+ 12             WHILE cname%FOUND
+ 13             LOOP
+ 14                     DBMS_OUTPUT.PUT_LINE(deptDetail.dname);
+ 15                     FETCH cname INTO deptDetail;
+ 16             END LOOP;
+ 17             CLOSE cname;
+ 18    END;
+ 19  /
+ACCOUNTING
+RESEARCH
+SALES
+OPERATIONS
+
+PL/SQL procedure successfully completed.
+---------------------------------------------------------------------------------------------------
+
+
+PL/SQL procedure successfully completed.
+
+SQL>   DECLARE
+  2             CURSOR cName IS SELECT * FROM dept;
+  3        deptDetail dept%rowtype;
+  4     BEGIN
+  5             IF cname%ISOPEN
+  6             THEN
+  7                     null;
+  8             ELSE
+  9                     OPEN cname;
+ 10             END IF;
+ 11             FETCH cname INTO deptDetail;
+ 12             WHILE cname%NOTFOUND
+ 13             LOOP
+ 14                     DBMS_OUTPUT.PUT_LINE(deptDetail.dname);
+ 15                     FETCH cname INTO deptDetail;
+ 16             END LOOP;
+ 17             CLOSE cname;
+ 18    END;
+ 19   /
+
+PL/SQL procedure successfully completed.
+-------------------------------------------------------------------------------------------------
+
+
+PL/SQL procedure successfully completed.
+
+SQL>  DECLARE
+  2             CURSOR cName IS SELECT * FROM dept;
+  3        deptDetail dept%rowtype;
+  4     BEGIN
+  5             IF cname%ISOPEN
+  6             THEN
+  7                     null;
+  8             ELSE
+  9                     OPEN cname;
+ 10             END IF;
+ 11
+ 12             WHILE cname%FOUND
+ 13             LOOP
+ 14                     DBMS_OUTPUT.PUT_LINE(deptDetail.dname);
+ 15                     FETCH cname INTO deptDetail;
+ 16             END LOOP;
+ 17             CLOSE cname;
+ 18    END;
+ 19   /
+
+PL/SQL procedure successfully completed.
+-----------------------------------------------------------------------------------------------------
+
+SQL> DECLARE
+  2             CURSOR cname IS SELECT * FROM dept;
+  3      BEGIN
+  4             FOR rec IN cname
+  5             LOOP
+  6                     DBMS_OUTPUT.PUT_LINE(rec.dname);
+  7             END LOOP;
+  8     END;
+  9   /
+ACCOUNTING
+RESEARCH
+SALES
+OPERATIONS
+
+PL/SQL procedure successfully completed.
+-------------------------------------------------------------------------
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2             CURSOR cname IS SELECT * FROM dept;
+  3      BEGIN
+  4             FOR rec IN cname
+  5             LOOP
+  6                     DBMS_OUTPUT.PUT_LINE(rec.dname);
+  7             END LOOP;
+  8*    END;
+SQL> /
+ACCOUNTING
+RESEARCH
+SALES
+OPERATIONS
+
+PL/SQL procedure successfully completed.
+-----------------------------------------------------------------------------------------------------
+
+SQL>   DECLARE
+  2             CURSOR cname IS SELECT ename,dname FROM employee e,dept d WHERE
+                e.deptno=d.deptno;
+  3      BEGIN
+  4             FOR rec IN cname
+  5             LOOP
+  6                     DBMS_OUTPUT.PUT_LINE(rec.dname);
+  7                     DBMS_OUTPUT.PUT_LINE(rec.ename);
+  8             END LOOP;
+  9     END;
+ 10   /
+RESEARCH
+smith
+SALES
+allen
+SALES
+ward
+RESEARCH
+jones
+SALES
+martin
+RESEARCH
+blake
+ACCOUNTING
+clark
+RESEARCH
+scott
+ACCOUNTING
+king
+SALES
+turner
+RESEARCH
+adams
+SALES
+james
+RESEARCH
+ford
+ACCOUNTING
+miller
+ACCOUNTING
+allen
+ACCOUNTING
+george
+RESEARCH
+becker
+RESEARCH
+bill
+
+PL/SQL procedure successfully completed.
+-------------------------------------------------------------------------------------------
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1    DECLARE
+  2             CURSOR cname IS SELECT ename,dname FROM employee e,dept d WHERE
+e.deptno=d.deptno;
+  3      BEGIN
+  4             FOR rec IN cname
+  5             LOOP
+  6                     DBMS_OUTPUT.PUT_LINE(rec.dname);
+  7             END LOOP;
+  8*    END;
+  9  /
+RESEARCH
+SALES
+SALES
+RESEARCH
+SALES
+RESEARCH
+ACCOUNTING
+RESEARCH
+ACCOUNTING
+SALES
+RESEARCH
+SALES
+RESEARCH
+ACCOUNTING
+ACCOUNTING
+ACCOUNTING
+RESEARCH
+RESEARCH
+
+PL/SQL procedure successfully completed.
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+
+DECLARE
+    	CURSOR cName IS SELECT * FROM employee WHERE deptno=&no;
+       empDetail employee%rowtype;
+    BEGIN
+    	IF cname%ISOPEN
+    	THEN
+    		null;
+    	ELSE
+    		OPEN cname;
+   	END IF;
+   	FETCH cname INTO empDetail;
+   	IF cname%ROWCOUNT>0 
+   	THEN
+   		WHILE cname%FOUND
+   		LOOP
+   			DBMS_OUTPUT.PUT_LINE(empDetail.ename);
+                        DBMS_OUTPUT.PUT_LINE(empDetail.empno);
+                        DBMS_OUTPUT.PUT_LINE(empDetail.sal);
+                        
+   			FETCH cname INTO empDetail;
+   		END LOOP;
+   		CLOSE cname;
+   	ELSE
+   	  DBMS_OUTPUT.PUT_LINE('Employees not working in this department');
+   	END IF;
+  END;
+ /
+
+
+DECLARE --outer block
+var_num1 NUMBER := 5;
+BEGIN
+DECLARE --inner block
+var_num1 NUMBER := 10;
+BEGIN
+DBMS_OUTPUT.PUT_LINE('Value for var_num1:' ||var_num1);
+--Can outer block variable (var_num1) be printed here.If Yes,Print the same.
+END;
+--Can inner block variable(var_num1) be printed here.If Yes,Print the same.
+END;
+
+
+
+
+
+
+
+
+
+
+

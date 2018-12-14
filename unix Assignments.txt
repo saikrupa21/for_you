@@ -1,0 +1,332 @@
+
+1)
+
+
+
+An employee list contains records in a fixed format and has the following structure:
+
+emp.lst: Empid | Name | Designation | Dept | Date of Birth | Salary
+
+The fields are delimited by a "|" character. The file is available at /tmp/emp.lst.
+
+Sort the file on the `Date of Birth` field and store the output at /tmp/user.log.
+
+Sample Input File (/tmp/emp.lst):
+9773 | Michael Shea | Insurance broker | Land | 1939-12-31 | 94615
+7362 | Nicole Summers | Engineer, drilling | Surveyor, building | 1988-04-30 | 47425
+5623 | Richard Walker | Water quality scientist | Warden/ranger | 1931-06-02 | 50693
+6216 | John Hawkins | Development worker, international aid | Agricultural engineer | 1939-09-17 | 83220
+4816 | David Palmer | Financial manager | Television camera operator | 1960-01-08 | 30102
+
+Sample Output File (/tmp/user.log):
+5623 | Richard Walker | Water quality scientist | Warden/ranger | 1931-06-02 | 50693
+6216 | John Hawkins | Development worker, international aid | Agricultural engineer | 1939-09-17 | 83220
+9773 | Michael Shea | Insurance broker | Land | 1939-12-31 | 94615
+4816 | David Palmer | Financial manager | Television camera operator | 1960-01-08 | 30102
+7362 | Nicole Summers | Engineer, drilling | Surveyor,
+
+
+solution:
+
+
+sort -o /tmp/user.log -t "|" -k5 /tmp/emp.lst
+
+
+2)
+
+An employee list contains records in a fixed format and has the following structure:
+
+emp.lst: Empid | Name | Sex | Designation | Dept | Date of Birth | Salary
+
+The fields are delimited by a "|" character. The file is available at /tmp/emp.lst.
+
+Find the count of all the female employees and print the number to STDOUT.
+
+Sample Input File (/tmp/emp.lst):
+1080 | John Taylor | F | Firefighter | Horticulturist, amenity | 2004-09-27
+9660 | Marcus Decker | F | Magazine journalist | Clinical research associate | 2000-08-28
+9477 | Katherine Bell | F | Surveyor, mining | Copywriter, advertising | 1953-04-11
+1251 | Erica Smith | M | Trading standards officer | Scientist, audiological | 1962-12-19
+7002 | Marcia Hoover | F | Public affairs consultant | Environmental manager | 1943-06-03
+
+
+solution :
+
+
+grep -c " F " /tmp/emp.lst
+
+
+3)
+
+
+Find the count of females who have a hotmail account from the emp.lst file present in /tmp directory.
+
+An employee list contains records in a fixed format and has the following structure:
+
+emp.lst: Empid | Name | Sex | Email | Date of Birth
+
+Sample Input File (/tmp/emp.lst):
+2821 | Anthony Wilson | F | roydanielle@hotmail.com | 1941-08-29
+8805 | Barry Ewing | F | suzanne54@yahoo.com | 1984-04-15
+3563 | Rita Butler | F | kevinfernandez@yahoo.com | 1978-05-07
+4001 | Marc Benson | M | pbrewer@hotmail.com | 2004-03-18
+
+
+solution:
+
+
+awk -F "|" '$3~/F/ && $4~/hotmail/' /tmp/emp.lst | wc -l 
+
+
+
+4)
+
+Find the name and sex of the youngest employee in the file. The file emp.lst is located in the /tmp directory.
+
+An employee list contains records in a fixed format and has the following structure:
+
+emp.lst: Empid | Name | Sex | Email | Date of Birth
+
+Sample Input File (/tmp/emp.lst):
+4317 | Alice Roberts | F | jon19@hotmail.com | 2012-09-08
+4302 | Joseph Morrison | M | ashleyanderson@hotmail.com | 1962-08-26
+1805 | Sonya Sanders | M | oromero@hotmail.com | 2003-03-19
+8825 | Jacob Martinez | F | rebeccajackson@gmail.com | 2018-01-27
+5294 | Sarah Ford | M | yirwin@gmail.com | 1957-03-16
+5339 | Julie Santana | F | ahughes@gmail.com | 1986-04
+
+
+solution:
+
+
+sort -r -k5 -t "|" /tmp/emp.lst |awk -F " " '(NR==1) {print $3" "$4":"$6}'
+
+
+5)
+
+
+Find the count of blood group owners from the emp.lst file present in /tmp directory.
+
+An employee list contains records in a fixed format and has the following structure:
+
+emp.lst: Empid | Name | Sex | Blood group | Date of Birth
+
+Sample Input File (/tmp/emp.lst):
+7506 | Gerald Chapman | F | AB- | 1970-06-09
+5193 | Douglas Gardner | M | A- | 1996-01-12
+2262 | Stephanie Perry | M | A- | 1957-04-06
+8839 | Misty Walton | M | O+ | 1938-09-05
+4933 | Erin Curtis | M | B+ | 2013-02-19
+Sample Output:
+2,1,1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8)
+
+
+Write a shell script, which will take a file name as an argument, checks whether the file exists and display its access permissions.
+
+The file is located in the /tmp directory.
+
+Input Command:
+/bin/bash source.sh foo.4jUxxVEiS
+
+Output: 
+-rw-r--r--
+
+solution:
+
+ls -l /tmp/$1 | cut -d" " -f1
+
+
+
+9)
+
+
+Three numbers are passed as command line arguments to the BASH script.  Display the largest number in the given three numbers.
+
+Input Command:
+/bin/bash source.sh 11 29 0
+
+Output: 
+29
+
+Note: The three numbers are generated dynamically during run-time and passed as arguments when you `Verify` or `Submit` your code for evaluation.
+
+
+solution:
+
+#/bin/bash source.sh
+if [ $1 -gt $2 && $1 -gt $3 ]
+then
+echo "$1"
+elif [ $2 -gt $3 ]
+then 
+echo "$2"
+else
+echo "$3"
+fi
+
+
+10)
+
+Write a BASH script to read a sentence from standard input and search a pattern fox inside that. If the pattern is present then print FOUND else NOT FOUND
+
+Input:
+The quick brown fox attacks the lazy dog.
+
+Output:
+FOUND
+
+solution:
+
+#/bin/bash
+# Read the variable from STDIN
+read a
+
+# Output the variable to STDOUT
+echo $a | grep "fox" && echo "FOUND" 
+||echo "NOT FOUND"
+
+
+
+
+
+11)
+
+
+Find the count of files and directories in /tmp and print the output as below,
+
+22,33
+
+Explanation:
+22: This is the count of files present in /tmp
+33: This is the count of directories present in /tmp
+
+Note: The files and directories will be created dynamically during run-time. Please make sure your script prints the output in the above format.
+
+
+
+solution:
+
+
+
+echo */ |wc
+
+
+
+
+12)
+
+
+Write a BASH script to find the current day and then greet the user as below,
+
+For Monday, print Moanday
+For Friday, print Friyay
+For other days, print Foobar
+
+Input date:
+Fri Jul 20 10:02:15 IST 2018
+
+Output:
+Friyay
+
+
+
+solution:
+
+m="Mon"
+f="Fri"
+d=date| awk '{ print $1 }'
+if [$m=$d]
+   then
+       echo -e "Moanday"
+else if [$f=$d]
+    then 
+       echo -e "Friyay"
+    else
+       echo -e "Foobar"
+    fi
+ fi
+
+
+
+13)
+
+
+DESCRIPTION
+Find and print the count of the normal users on the system with UID's between 1000-2000.
+
+Sample Output:
+25
+
+Note: The normal user accounts will be dynamically created during the run-time. You need to find the count of the users and then print the number on STDOUT.
+
+
+solution:
+
+
+awk -F: '{ if ($3 > 1000 && $3 < 2000)
+        
+ {print $1":"$3} }' /etc/passwd | wc -l
+
+
+
+14)
+
+
+Write a BASH program to read the full name from STDIN and then print the name by swapping the firstname and lastname.
+
+Sample Input:
+Harry|Potter
+
+Output:
+Potter|Harry
+
+
+
+
+solution:
+
+
+
+
+# Read the variable from STDIN
+read a
+
+# Output the variable to STDOUT
+echo "$a" > text.txt   
+ 
+awk -F '|' '{print $2"|"$1}' text.txt
+
+
+
+
+15)
+
+
+
+Write a BASH script to find the count of files in /tmp directory which have been modified today.
+
+Output:
+66
+
+
+solution:
+
+
+
+find /tmp -mtime -1 -type f | wc -l
