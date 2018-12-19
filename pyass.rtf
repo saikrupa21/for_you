@@ -1,0 +1,242 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fprq2\fcharset0 Bookman Old Style;}}
+{\colortbl ;\red0\green77\blue187;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\nowidctlpar\sa200\sl276\slmult1\lang9\ul\b\f0\fs22\par
+   \cf1\i                                                                           PYTHON LAB BOOK\par
+\cf0\i0 1. Input your name into a variable called $name and then print "Hello, <your name here>". \par
+\ulnone\b0 a = input()\par
+print("hello,",a)\ul\b\par
+  2. Write a program that adds two numbers and then prints out whether the sum of those two numbers is positive or negative.  \ulnone\b0\par
+a=int(input())\par
+b=int(input())\par
+c=a+b\par
+if c>0:\par
+    print("positive")\par
+else:\par
+    print("negative") \par
+\ul\b 3.Write a program that stores a number and keeps trying to get user input until the user enters the number correctly. \par
+As soon as the correct number is entered, it prints: Correct\par
+\ulnone\b0\par
+a=10\par
+i=5;\par
+while i>=1:\par
+    b=int(input("enter number:"))\par
+    if a==b:\par
+        print("correct");\par
+        break;\par
+    else:\par
+        continue;\par
+\par
+\ul\b 4.Input your first name and last name as two separate variables, labeled as $firstname and $lastname respectively. \par
+Concatenate them together using the dot operator '.' into a new variable called $wholename. Then print out the $wholename.   \par
+\ulnone\b0\par
+firstname="lohitha"\par
+lastname="reddy"\par
+wholename=' '.join([firstname,lastname])\par
+print(wholename)\par
+\ul\b 5. Write a program to accept an input string from the user and toggle the character cases.  For example, $str=\rdblquote  Hello How Are You?\rdblquote   O/p : hELLO hOW aRE yOU \par
+\ulnone\b0 a=str(input())\par
+print(a.swapcase())\par
+6\ul\b .Write a program which will perform sum and  multiplication  ,that sums and multiplies (respectively) all the numbers in a list of numbers. \par
+For example, sum([1, 2, 3, 4]) should return 10, and multiply([1, 2, 3, 4]) should return 24.  \par
+\ulnone\b0 import functools\par
+a=[1,2,3,4]\par
+print(functools.reduce(lambda x,y:x+y,a))\par
+print(functools.reduce(lambda x,y:x*y,a))\par
+\par
+7.\ul\b Write a program that takes a value (i.e. a number, string, etc) x and a list of values a, and returns True if x is a member of a, False otherwise. (Note that this is exactly what the in operator does,\par
+ but for the sake of the exercise you should pretend Python did not have this operator\par
+\par
+\ulnone\b0 def is_member(list,element):\par
+  for e in list:\par
+        if e==element:\par
+            return True;\par
+    return False;\par
+lista=[]\par
+while True:\par
+    v=input("enter character:");\par
+    lista.append(v);\par
+    if v=="break":\par
+        break;\par
+while True:\par
+    mem=input("introduce your word:")\par
+    if mem=="break":\par
+        break;\par
+    print(is_member(lista,mem))\par
+\par
+\par
+\ul\b 8.Write a program that has two lists and print True if they have at least one member in common, False otherwise. You may use your is_member() function, or the in operator, but for the sake of the exercise, you should (also) write it using two nested for-loops.  \par
+\ulnone\b0 def common_data(list1, list2):\par
+     result = False\par
+     for x in list1:\par
+         for y in list2:\par
+             if x == y:\par
+                 result = True\par
+                 return result           \par
+print(common_data([1,2,3,4,5], [5,6,7,8,9]))\par
+print(common_data([1,2,3,4,5], [6,7,8,9]))\par
+\ul\b 9. Write a program for  histogram that takes a list of integers and prints a histogram to the screen. For example, histogram([4, 9, 7]) should print the following:   \par
+****  *********  ******* \par
+\ulnone\b0 b=int(input())\par
+l=[]\par
+for i in range(b):\par
+    c=int(input())\par
+    l.append(c)\par
+for i in l:\par
+    print('*'*i)\ul\b\par
+\ulnone\b0 -------------------------------------------------------------------------------------------------\par
+\ul\b 1. Define a function generate_n_chars() that takes an integer n and a character c and returns a string, n characters long, consisting only of c:s. For example, generate_n_chars(5,"x") should return the string "xxxxx". (Python is unusual in that you can actually write an expression 5 * "x" that will evaluate to "xxxxx". For the sake of the exercise you should ignore that the problem can be solved in this manner.)  2\ulnone\b0\par
+a=input("enter any character")\par
+b=int(input("enter range:"))\par
+print(a*b);\par
+\par
+\ul\b 2.The function max() from exercise 1) and the function max_of_three() from exercise 2) will only work for two and three numbers, respectively. But suppose we have a much larger number of numbers, or suppose we cannot tell in advance how many they are? Write a function max_in_list() that takes a list of numbers and returns the largest one\par
+\ulnone\b0 def max_in_list(inputList):\par
+    sortedList = sorted(inputList)\par
+    return sortedList[-1]     \par
+List = [21,96,18,97,143,6]\par
+print("The list is: "+str(List))\par
+print("The max in the list is: " +str(max_in_list(List)))\par
+\par
+\ul\b 3.Write a program that maps a list of words into a list of integers representing the lengths of the correponding words. \par
+\ulnone\b0 def map_to_lengths_for(words):\par
+    lengths = []\par
+    for word in words:\par
+        lengths.append(len(word))\par
+    return lengths\par
+def map_to_lengths_map(words):\par
+    return map(len, words)\par
+def map_to_lengths_lists(words):\par
+    return [len(word) for word in words]\par
+if __name__ == "__main__":\par
+    words = ['abv', 'try me', 'test']\par
+    print(map_to_lengths_for(words))\par
+    print(map_to_lengths_map(words))\par
+    print(map_to_lengths_lists(words))\par
+\par
+\ul\b 4.Write a function find_longest_word() that takes a list of words and returns the length of the longest one. Modify the same to do with lambda expression.  \par
+\ulnone\b0 def find_longest_word(words_list):\par
+    word_len = []\par
+    for n in words_list:\par
+        word_len.append((len(n), n))\par
+    word_len.sort()\par
+    return word_len[-1][1]\par
+print(find_longest_word(["PHP", "Lohitha Reddy", "Spyder"]))\par
+\b using\b0  \b lambda function:\par
+\b0 import functools\par
+f = lambda a, b: a if len(a) > len(b) else b\par
+print(functools.reduce(f, ["lohitha reddy","samhitha reddy","siva reddy","padma reddy"]))\par
+\ul\b 5.Write a function filter_long_words() that takes a list of words and an integer n and returns the list of words that are longer than n. Modify the same to do with lambda expression.\par
+\ulnone\b0 def filter_long_words(words, n):\par
+    return [word for word in words if len(word) > n]\par
+if __name__ == "__main__":\par
+    print(filter_long_words(['lohitha','naveena','chinnu','teddy'],6))\par
+\b using lambda function:\par
+\b0 def filter_long_words(words, n):\par
+    return filter(lambda x: len(x) > n, words)\par
+print(filter_long_words(['capgemini','lohitha','hai','hello'], 5))\par
+\par
+\ul\b  6.Write a version of a palindrome recognizer that also accepts phrase palindromes such as "Go hang a salami I'm a lasagna hog.", "Was it a rat I saw?", "Step on no pets", "Sit on a potato pan, Otis", "Lisa Bonet ate no basil", "Satan, oscillate my metallic sonatas", "I roamed under it as a tired nude Maori", "Rise to vote sir", or the exclamation "Dammit, I'm mad!". Note that punctuation, capitalization, and spacing are usually ignored.  \par
+\ulnone\b0 import string\par
+ignored = string.punctuation + " "\par
+def is_palindrome(str):\par
+  cleanstr = ""\par
+  for i in str:\par
+    cleanstr += "" if i in ignored else i \par
+  return cleanstr.lower() == cleanstr[::-1].lower()\par
+print(is_palindrome("Go hang a salami I'm a lasagna hog."))\par
+print(is_palindrome("Was it a rat I aw?"))\par
+\ul\b 7.A pangram is a sentence that contains all the letters of the English alphabet at least once, for example: The quick brown fox jumps over the lazy dog. Your task here is to write a function to check a sentence to see if it is a pangram or not.  \par
+\ulnone\b0 myPhrase = "The quick brown fox jumps over the lazy dog"\par
+def is_pangram(phrase):\par
+    c = 0\par
+    alphabet = "abcdefghijklmnopqrstuvwxyz"\par
+    phraseLetters = ""\par
+    for char in phrase:\par
+        for letter in alphabet:\par
+            if char == letter and char not in phraseLetters:\par
+                phraseLetters += char\par
+    for char in phraseLetters:\par
+        for letter in alphabet:\par
+            if char == letter:\par
+                c += 1\par
+    if c == 26:\par
+        return True\par
+    else:\par
+        print(phraseLetters, alphabet)\par
+        return False\par
+print(is_pangram(myPhrase))\par
+\ul\b 8.Represent a small bilingual lexicon as a Python dictionary in the following fashion \{"merry":"god", "christmas":"jul", "and":"och", "happy":gott", "new":"nytt", "year":"\'e5r"\} and use it to translate your Christmas cards from English into Swedish. That is, write a function translate() that takes a list of English words and returns a list of Swedish words\par
+\ulnone\b0 dict1 = \{"merry":"god","christmas":"jul","and":"och","happy":"gott","new":"nytt","year":"ar"\}\par
+n=int(input())\par
+l=[]\par
+for i in range(n):\par
+     l.append(input())\par
+for i in l:\par
+    print(d[i])\par
+\par
+\ul\b 9.Write a function char_freq() that takes a string and builds a frequency listing of the characters contained in it. Represent the frequency listing as a Python dictionary. Try it with something likechar_freq("abbabcbdbabdbdbabababcbcbab").   \par
+\ulnone\b0 def char_freq(inputString):\par
+    dictionary = \{\}\par
+    print(inputString)     \par
+    for i in range(len(inputString)):\par
+        if inputString[i] in dictionary:\par
+            dictionary[inputString[i]]= int(dictionary.get(inputString[i]))+1\par
+        else:\par
+            dictionary[inputString[i]]= 1 \par
+    return dictionary        \par
+print(str(char_freq("lohitha")))\par
+\ul\b 10.Create a module called mathematics.py and provide subroutines (should be defined generally and should work for any number of arguments) such as:  Add  Sub  Sort the values  Max   Sort   \par
+Use the module in a program and apply the functions on two array variables (say a and b) to:   Add two arrays (and store it in c)  Subtract two arrays(and store it in d)  Find the minimum and maximum value of the resultant array (c or d)  Sort the resultant array(c or d)         \par
+\par
+\par
+\par
+\par
+11.try above program with package\par
+\par
+\par
+\par
+\par
+\par
+12.Create a Date class, which represents the Date with its attributes. Write a  UseDate class, which makes use of the Date class to instantiate, and call methods on the object. \par
+\ulnone\b0 lass Date(object):\par
+    def __init__(self,year,month,date):\par
+        self.year=year\par
+        self.month=month\par
+        self.date=date\par
+    def get_month(self):\par
+        months=['','January','February','March','April','May','June','July','August','September','October','November','December']\par
+        return(months[self.month])\par
+    def is_correct_date(self,obj):\par
+        f=0\par
+        days31=[1,3,5,7,8,10,12]\par
+        days30=[4,6,9,11]\par
+        if obj.month>0 and obj.month<13:\par
+            if(obj.month==2):\par
+                if(obj.year%4)==0 and (obj.date<30):\par
+                    return 'True'\par
+                else:\par
+                    return 'False'\par
+            elif obj.month in days31:\par
+                if obj.date>0 and obj.date<32:\par
+                    return 'True'\par
+            elif obj.month in days30:\par
+                if obj.date>0 and obj.date<31:\par
+                    return 'True'\par
+                else:\par
+                    return 'False'\par
+        else:\par
+                return 'False'\ul\b\par
+13.WAP to read data from one file and writes in second file\par
+\par
+\par
+\par
+\par
+\par
+14.WAP which will display diffrenent function of math and numpy library.   \par
+\par
+\par
+\ulnone\b0\par
+\par
+\par
+}
+ 
