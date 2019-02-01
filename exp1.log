@@ -1,0 +1,43 @@
+BTEQ 13.00.00.03 Mon Apr 24 14:09:24 2017
+ 
++---------+---------+---------+---------+---------+---------+---------+----
+.logon cgi/dbc,
+
+ *** Logon successfully completed.
+ *** Teradata Database Release is 13.00.00.12                   
+ *** Teradata Database Version is 13.00.00.12                     
+ *** Transaction Semantics are BTET.
+ *** Character Set Name is 'ASCII'.
+ 
+ *** Total elapsed time was 1 second.
+ 
++---------+---------+---------+---------+---------+---------+---------+----
+
+.set width 255
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+-
+.set maxerror 25
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+-
+.set errorout stdout
+ *** Error messages now directed to STDOUT.
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+-
+
+create table abcd7(nn char,bb char);
+ *** Failure 3803 Table 'abcd7' already exists.
+                Statement# 1, Info =0 
+ *** Total elapsed time was 1 second.
+
+
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+-
+
+insert into abcd7 values ('aab','bbb');
+ *** Failure 2802 Duplicate row error in DBC.abcd7.
+                Statement# 1, Info =0 
+ *** Total elapsed time was 1 second.
+
+
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+-
+
+.quit
+ *** You are now logged off from the DBC.
+ *** Exiting BTEQ...
+ *** RC (return code) = 8 

@@ -1,0 +1,15 @@
+.logon cgi/dbc,dbc;
+
+.set width 255
+.set maxerror 25
+.set errorout stdout
+
+create table abcd7(nn char,bb char);
+
+insert into abcd7 values ('aab','bbb');
+
+.quit
+
+
+
+
